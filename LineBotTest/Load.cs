@@ -35,13 +35,21 @@ namespace LineBotTest
         public static bool SaveDB(string Userid, int num, string AccountType)
         {
             var _db = new LineBotTest.Models.DbCoNtext();
-            var p = new Account { Id = Userid, Price = num, AType = AccountType };
+            var p = new Account { Id = Userid, Price = num, AType = AccountType,DateTime = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") };
             _db.Accounts.Add(p);
             _db.SaveChanges();
             return true;
 
         }
-        
+
+        public static IQueryable<Account> Day(string c)
+        {
+            string Date = System.DateTime.Now.ToString("yyyy/MM/dd");
+            var _db = new LineBotTest.Models.DbCoNtext();
+            IQueryable<Account> query = _db.Accounts.Where(x=> x.Id == c && x.DateTime.Contains(Date));
+            return query;
+        }
+
 
     }
 }

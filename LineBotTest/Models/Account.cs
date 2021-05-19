@@ -17,5 +17,6 @@ namespace LineBotTest.Models
 
         public string AType { get; set; }
 
+        public string DateTime { get; set; }
     }
 }

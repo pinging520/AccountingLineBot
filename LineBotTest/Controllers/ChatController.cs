@@ -37,7 +37,9 @@ namespace LineBotTest.Controllers
                 {       //判斷是否訊息 && 訊息格式純文字
                     if (LineEvent.type.ToLower() == "message" && LineEvent.message.type == "text")
                     {
-                        Message =ProcessPostback(LineEvent);
+                        //是否是指令
+                        if (!command(LineEvent))
+                        { Message = ProcessPostback(LineEvent); }
                     }
                      
                 }
@@ -133,9 +135,36 @@ namespace LineBotTest.Controllers
             return Error;
         }
 
-        
-        
+        private bool command(isRock.LineBot.Event e)
+        {
+            var UserId = e.source.userId;
+            var msg = e.message.text;
+            int mun = 0;
+            if (msg == "/today" ||msg == "/today")
+            {
+                foreach (var Text in Load.Day(UserId))
+                { mun += Text.Price; }
+                isRock.LineBot.Bot b = new isRock.LineBot.Bot();
+                isRock.LineBot.TextMessage TextMessage = new isRock.LineBot.TextMessage(
+                    $"今日花費金額${mun}");
+                b.ReplyMessage(e.replyToken, TextMessage);
+                return true;
+            }
 
-        
+            if (msg == "/Help" || msg == "/help")
+            {
+                isRock.LineBot.Bot b = new isRock.LineBot.Bot();
+                isRock.LineBot.TextMessage TextMessage = new isRock.LineBot.TextMessage(
+                    "/today 可顯示今日花費, \r\n---------------------\r\n使用方法：\r\n先在聊天室送出金額，再輸入消費類別即可保存！");
+                b.ReplyMessage(e.replyToken, TextMessage);
+                return true;
+            }
+
+            return false;
+        }
+
+
+
+
     }
 }
