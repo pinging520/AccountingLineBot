@@ -31,7 +31,7 @@ namespace LineBotTest.Controllers
 
                 string Message="";
                 //Message = ReceivedMessage.events[0].message.text;
-                if (LineEvent == null)
+                if (LineEvent.message == null)
                 { return Ok();}
                 else
                 {       //判斷是否訊息 && 訊息格式純文字
