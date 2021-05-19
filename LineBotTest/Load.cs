@@ -31,7 +31,15 @@ namespace LineBotTest
             items.Add("服裝費");
             return items;
         }
-        
+        //
+        static public List<string> GetCommandTypes(string UserId)
+        {
+            List<string> items = new List<string>();
+            items.Add("/today");
+            items.Add("/month");
+            return items;
+        }
+        //
         public static bool SaveDB(string Userid, int num, string AccountType)
         {
             var _db = new LineBotTest.Models.DbCoNtext();
