@@ -1,6 +1,7 @@
 # LineBot_Accounting
 
-<p>Line Developers：<p>
-<a href="https://developers.line.biz/zh-hant/" target="_blank">Line Developers</a>
+Line Developers：
+https://developers.line.biz/zh-hant/
 
-<br>
+Channel access token<br>
+Webhook URL
