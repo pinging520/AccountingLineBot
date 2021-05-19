@@ -42,11 +42,20 @@ namespace LineBotTest
 
         }
 
+        //本日花費
         public static IQueryable<Account> Day(string c)
         {
             string Date = System.DateTime.Now.ToString("yyyy/MM/dd");
             var _db = new LineBotTest.Models.DbCoNtext();
             IQueryable<Account> query = _db.Accounts.Where(x=> x.Id == c && x.DateTime.Contains(Date));
+            return query;
+        }
+        //本月花費
+        public static IQueryable<Account> Month(string c)
+        {
+            string Date = System.DateTime.Now.ToString("yyyy/MM");
+            var _db = new LineBotTest.Models.DbCoNtext();
+            IQueryable<Account> query = _db.Accounts.Where(x => x.Id == c && x.DateTime.Contains(Date));
             return query;
         }
 

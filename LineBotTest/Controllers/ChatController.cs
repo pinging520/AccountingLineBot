@@ -155,10 +155,26 @@ namespace LineBotTest.Controllers
             {
                 isRock.LineBot.Bot b = new isRock.LineBot.Bot();
                 isRock.LineBot.TextMessage TextMessage = new isRock.LineBot.TextMessage(
-                    "/today 可顯示今日花費, \r\n---------------------\r\n使用方法：\r\n先在聊天室送出金額，再輸入消費類別即可保存！");
+                    "/today 可顯示今日花費, \r\n" +
+                    "/month 可顯示本月花費, \r\n" +
+                    "---------------------\r\n" +
+                    "使用方法：\r\n" +
+                    "先在聊天室送出金額，再輸入消費類別即可保存！");
                 b.ReplyMessage(e.replyToken, TextMessage);
                 return true;
             }
+
+            if (msg == "/Month" || msg == "/month")
+            {
+                foreach (var Text in Load.Month(UserId))
+                { mun += Text.Price; }
+                isRock.LineBot.Bot b = new isRock.LineBot.Bot();
+                isRock.LineBot.TextMessage TextMessage = new isRock.LineBot.TextMessage(
+                    $"本月花費金額${mun}");
+                b.ReplyMessage(e.replyToken, TextMessage);
+                return true;
+            }
+
 
             return false;
         }
