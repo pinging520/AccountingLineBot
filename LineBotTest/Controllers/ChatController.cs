@@ -134,7 +134,7 @@ namespace LineBotTest.Controllers
                     }
                     this.ReplyMessage(e.replyToken, TextMessage);
                     return "";
-                    //return $"${num} 已記錄為 {AccountType}"; 
+                    
                 }
                 else
                 { return Error; }
@@ -191,17 +191,7 @@ namespace LineBotTest.Controllers
                 b.ReplyMessage(e.replyToken, TextMessage);
                 return true;
             }
-            //
-            if (msg == "你好厲害" || msg == "妳好厲害" || msg == "您好厲害")
-            {
-                
-                isRock.LineBot.Bot b = new isRock.LineBot.Bot();
-                isRock.LineBot.TextMessage TextMessage = new isRock.LineBot.TextMessage(
-                    $"謝謝妳餒");
-                b.ReplyMessage(e.replyToken, TextMessage);
-                return true;
-            }
-            //
+            
 
             return false;
         }
